@@ -547,15 +547,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var ngx_cookie_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-cookie-service */ "./node_modules/ngx-cookie-service/fesm2015/ngx-cookie-service.js");
 
 
 
-
+// import { CookieService } from 'ngx-cookie-service';
 let AuthGuard = class AuthGuard {
-    constructor(router, cookieService) {
+    constructor(router) {
         this.router = router;
-        this.cookieService = cookieService;
     }
     /**
      * Following method gets called to authenticate whether the user has adequate role to acess the URIs.
@@ -567,7 +565,7 @@ let AuthGuard = class AuthGuard {
      */
     canActivate(next, state) {
         debugger;
-        if (this.cookieService.get('logged') === 'true') {
+        if (localStorage.get('logged') === 'true') {
             return true;
         }
         else {
@@ -576,8 +574,7 @@ let AuthGuard = class AuthGuard {
     }
 };
 AuthGuard.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
-    { type: ngx_cookie_service__WEBPACK_IMPORTED_MODULE_3__["CookieService"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
 ];
 AuthGuard = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -640,20 +637,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DashboardComponent", function() { return DashboardComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var ngx_cookie_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ngx-cookie-service */ "./node_modules/ngx-cookie-service/fesm2015/ngx-cookie-service.js");
 
 
-
+// import { CookieService } from 'ngx-cookie-service';
 let DashboardComponent = class DashboardComponent {
-    constructor(cookieService) {
-        this.cookieService = cookieService;
-    }
+    constructor() { }
     ngOnInit() {
     }
 };
-DashboardComponent.ctorParameters = () => [
-    { type: ngx_cookie_service__WEBPACK_IMPORTED_MODULE_2__["CookieService"] }
-];
 DashboardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-dashboard',
@@ -692,29 +683,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var ngx_cookie_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-cookie-service */ "./node_modules/ngx-cookie-service/fesm2015/ngx-cookie-service.js");
 
 
 
-
+// import { CookieService } from 'ngx-cookie-service';
 let HeaderComponent = class HeaderComponent {
-    constructor(router, cookieService) {
+    constructor(router) {
         this.router = router;
-        this.cookieService = cookieService;
     }
     ngOnInit() {
         debugger;
-        this.profileCookie = this.cookieService.get('logged');
+        this.profileCookie = localStorage.get('logged');
     }
     logout() {
-        this.cookieService.deleteAll('logged');
-        document.cookie = 'login' + +'=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        // this.cookieService.deleteAll('logged');
+        localStorage.set('logged', '');
+        // document.cookie = 'login' + + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         window.location.replace(window.location.href);
     }
 };
 HeaderComponent.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
-    { type: ngx_cookie_service__WEBPACK_IMPORTED_MODULE_3__["CookieService"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
 ];
 HeaderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -755,17 +744,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../config */ "./src/app/config.ts");
-/* harmony import */ var ngx_cookie_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-cookie-service */ "./node_modules/ngx-cookie-service/fesm2015/ngx-cookie-service.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 
 
 
 
 
 let LoginComponent = class LoginComponent {
-    constructor(cookieService, router) {
-        this.cookieService = cookieService;
+    constructor(
+    // private cookieService: CookieService, 
+    router) {
         this.router = router;
         //Email or Mobile Input form group & form control
         this.login = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
@@ -779,7 +767,7 @@ let LoginComponent = class LoginComponent {
     checkCredentials() {
         _config__WEBPACK_IMPORTED_MODULE_3__["loginList"].filter(res => {
             if (this.login.controls['username'].value === res.username && this.login.controls['password'].value === res.password) {
-                this.cookieService.set('logged', 'true');
+                localStorage.set('logged', 'true');
                 this.router.navigateByUrl('dashboard');
             }
             else {
@@ -789,8 +777,7 @@ let LoginComponent = class LoginComponent {
     }
 };
 LoginComponent.ctorParameters = () => [
-    { type: ngx_cookie_service__WEBPACK_IMPORTED_MODULE_4__["CookieService"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"] }
 ];
 LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

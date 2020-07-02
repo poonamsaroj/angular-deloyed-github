@@ -1092,20 +1092,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! @angular/router */
-    "./node_modules/@angular/router/fesm2015/router.js");
-    /* harmony import */
+    "./node_modules/@angular/router/fesm2015/router.js"); // import { CookieService } from 'ngx-cookie-service';
 
-
-    var ngx_cookie_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! ngx-cookie-service */
-    "./node_modules/ngx-cookie-service/fesm2015/ngx-cookie-service.js");
 
     var AuthGuard = /*#__PURE__*/function () {
-      function AuthGuard(router, cookieService) {
+      function AuthGuard(router) {
         _classCallCheck(this, AuthGuard);
 
         this.router = router;
-        this.cookieService = cookieService;
       }
       /**
        * Following method gets called to authenticate whether the user has adequate role to acess the URIs.
@@ -1122,7 +1116,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function canActivate(next, state) {
           debugger;
 
-          if (this.cookieService.get('logged') === 'true') {
+          if (localStorage.get('logged') === 'true') {
             return true;
           } else {
             this.router.navigateByUrl('login');
@@ -1136,8 +1130,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     AuthGuard.ctorParameters = function () {
       return [{
         type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
-      }, {
-        type: ngx_cookie_service__WEBPACK_IMPORTED_MODULE_3__["CookieService"]
       }];
     };
 
@@ -1233,19 +1225,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
     /*! @angular/core */
-    "./node_modules/@angular/core/fesm2015/core.js");
-    /* harmony import */
+    "./node_modules/@angular/core/fesm2015/core.js"); // import { CookieService } from 'ngx-cookie-service';
 
-
-    var ngx_cookie_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! ngx-cookie-service */
-    "./node_modules/ngx-cookie-service/fesm2015/ngx-cookie-service.js");
 
     var DashboardComponent = /*#__PURE__*/function () {
-      function DashboardComponent(cookieService) {
+      function DashboardComponent() {
         _classCallCheck(this, DashboardComponent);
-
-        this.cookieService = cookieService;
       }
 
       _createClass(DashboardComponent, [{
@@ -1255,12 +1240,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       return DashboardComponent;
     }();
-
-    DashboardComponent.ctorParameters = function () {
-      return [{
-        type: ngx_cookie_service__WEBPACK_IMPORTED_MODULE_2__["CookieService"]
-      }];
-    };
 
     DashboardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-dashboard',
@@ -1330,33 +1309,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! @angular/router */
-    "./node_modules/@angular/router/fesm2015/router.js");
-    /* harmony import */
+    "./node_modules/@angular/router/fesm2015/router.js"); // import { CookieService } from 'ngx-cookie-service';
 
-
-    var ngx_cookie_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! ngx-cookie-service */
-    "./node_modules/ngx-cookie-service/fesm2015/ngx-cookie-service.js");
 
     var HeaderComponent = /*#__PURE__*/function () {
-      function HeaderComponent(router, cookieService) {
+      function HeaderComponent(router) {
         _classCallCheck(this, HeaderComponent);
 
         this.router = router;
-        this.cookieService = cookieService;
       }
 
       _createClass(HeaderComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
           debugger;
-          this.profileCookie = this.cookieService.get('logged');
+          this.profileCookie = localStorage.get('logged');
         }
       }, {
         key: "logout",
         value: function logout() {
-          this.cookieService.deleteAll('logged');
-          document.cookie = 'login' + +'=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+          // this.cookieService.deleteAll('logged');
+          localStorage.set('logged', ''); // document.cookie = 'login' + + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
           window.location.replace(window.location.href);
         }
       }]);
@@ -1367,8 +1341,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     HeaderComponent.ctorParameters = function () {
       return [{
         type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
-      }, {
-        type: ngx_cookie_service__WEBPACK_IMPORTED_MODULE_3__["CookieService"]
       }];
     };
 
@@ -1450,21 +1422,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var ngx_cookie_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! ngx-cookie-service */
-    "./node_modules/ngx-cookie-service/fesm2015/ngx-cookie-service.js");
-    /* harmony import */
-
-
-    var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! @angular/router */
     "./node_modules/@angular/router/fesm2015/router.js");
 
     var LoginComponent = /*#__PURE__*/function () {
-      function LoginComponent(cookieService, router) {
+      function LoginComponent( // private cookieService: CookieService, 
+      router) {
         _classCallCheck(this, LoginComponent);
 
-        this.cookieService = cookieService;
         this.router = router; //Email or Mobile Input form group & form control
 
         this.login = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
@@ -1484,7 +1450,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _config__WEBPACK_IMPORTED_MODULE_3__["loginList"].filter(function (res) {
             if (_this.login.controls['username'].value === res.username && _this.login.controls['password'].value === res.password) {
-              _this.cookieService.set('logged', 'true');
+              localStorage.set('logged', 'true');
 
               _this.router.navigateByUrl('dashboard');
             } else {
@@ -1499,9 +1465,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     LoginComponent.ctorParameters = function () {
       return [{
-        type: ngx_cookie_service__WEBPACK_IMPORTED_MODULE_4__["CookieService"]
-      }, {
-        type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]
       }];
     };
 
